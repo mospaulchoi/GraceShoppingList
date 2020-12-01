@@ -88,7 +88,7 @@ function Name({ navigation }) {
   return (
     <Container>
       <Contents>
-        <Text>{`기억하기 편하신\n즐겨찾기 쇼핑 목록 이름을 정해 주세요!\n예) 일상 쇼핑, ㅇㅇ 생일, 추석 명절 등`}</Text>
+        <Text>{`기억하기 편하신 이름으로 정해 주세요!\n예) 일상 쇼핑 목록, ㅇㅇ 생일, 추석 명절 등\n'확인' 버튼을 누르셔야 등록이 됩니다!`}</Text>
         <Row>
           <Input
             placeholder="여기에 써 주세요!"

@@ -1,5 +1,7 @@
 import React from "react";
+import { Alert } from "react-native";
 import styled from "styled-components/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -45,17 +47,45 @@ const Interval = styled.View`
 `;
 
 function Home({ navigation }) {
+  const [oldShoppingList, setOldShoppingList] = React.useState([]);
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      AsyncStorage.getItem("oldShoppingList")
+        .then((data) => {
+          if (data !== null) {
+            setOldShoppingList(JSON.parse(data));
+          }
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <Container>
       <Image source={require("../assets/cosmos.jpg")}>
         <Title1>Shopping List App</Title1>
         <Title2>for</Title2>
-        <Title3>Grace</Title3>
+        <Title3>You</Title3>
         <Row>
           <ButtonView1>
             <Button
               title="오늘의 쇼핑 목록"
-              onPress={() => navigation.navigate("Today")}
+              onPress={() => {
+                if (oldShoppingList.length === 0) {
+                  Alert.alert(
+                    "안내말씀",
+                    "오늘의 쇼핑 목록이 아직 없습니다.\n사용 설명서를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!"
+                  );
+                  navigation.navigate("Home");
+                } else {
+                  navigation.navigate("Today");
+                }
+              }}
             />
             <Interval />
             <Button
@@ -67,17 +97,47 @@ function Home({ navigation }) {
           <ButtonView2>
             <Button
               title="즐겨찾기 쇼핑 목록"
-              onPress={() => navigation.navigate("Favorite")}
+              onPress={() => {
+                if (oldShoppingList.length === 0) {
+                  Alert.alert(
+                    "안내말씀",
+                    "즐겨찾기 쇼핑 목록이 아직 없습니다.\n사용 설명서를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!"
+                  );
+                  navigation.navigate("Home");
+                } else {
+                  navigation.navigate("Favorite");
+                }
+              }}
             />
             <Interval />
             <Button
               title="이전 쇼핑 목록 보기"
-              onPress={() => navigation.navigate("Old")}
+              onPress={() => {
+                if (oldShoppingList.length === 0) {
+                  Alert.alert(
+                    "안내말씀",
+                    "이전 쇼핑 목록이 아직 없습니다.\n사용 설명서를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!"
+                  );
+                  navigation.navigate("Home");
+                } else {
+                  navigation.navigate("Old");
+                }
+              }}
             />
             <Interval />
             <Button
               title="새 쇼핑 목록 만들기"
-              onPress={() => navigation.navigate("New")}
+              onPress={() => {
+                if (oldShoppingList.length === 0) {
+                  Alert.alert(
+                    "안내말씀",
+                    "와우!\n첫 쇼핑 목록 만들기를\n진심으로 축하드립니다!!!!!!!"
+                  );
+                  navigation.navigate("New");
+                } else {
+                  navigation.navigate("New");
+                }
+              }}
             />
           </ButtonView2>
         </Row>

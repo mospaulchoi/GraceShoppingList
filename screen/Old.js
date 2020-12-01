@@ -171,35 +171,35 @@ function Old({ navigation }) {
             title="선택 목록 삭제"
             color="purple"
             onPress={() => {
-              Alert.alert(
-                "안내말씀",
-                "선택하신 날짜의 쇼핑 목록이 삭제됩니다!\n\n정말 삭제하시겠습니까?",
-                [
-                  {
-                    text: "취소",
-                    onPress: () => {},
-                    style: "cancel",
-                  },
-                  {
-                    text: "삭제",
-                    onPress: () => {
-                      if (index !== "") {
+              if (index !== "") {
+                Alert.alert(
+                  "안내말씀",
+                  "선택하신 날짜의 쇼핑 목록이 삭제됩니다!\n\n정말 삭제하시겠습니까?",
+                  [
+                    {
+                      text: "취소",
+                      onPress: () => {},
+                      style: "cancel",
+                    },
+                    {
+                      text: "삭제",
+                      onPress: () => {
                         store1(
                           _.reject(oldShoppingList, oldShoppingList[index])
                         );
                         setSpDayList([]);
-                      } else {
-                        Alert.alert(
-                          "안내말씀",
-                          "선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
-                        );
-                      }
+                      },
                     },
-                  },
-                ],
-                { cancelable: false }
-              );
-              navigation.navigate("Old");
+                  ],
+                  { cancelable: false }
+                );
+                navigation.navigate("Old");
+              } else {
+                Alert.alert(
+                  "안내말씀",
+                  "빈 쇼핑 목록이거나 선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
+                );
+              }
             }}
           />
           <Button
@@ -212,7 +212,7 @@ function Old({ navigation }) {
               } catch (error) {
                 Alert.alert(
                   "안내말씀",
-                  "선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
+                  "빈 쇼핑 목록이거나 선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
                 );
               }
             }}
@@ -255,16 +255,16 @@ function Old({ navigation }) {
           <Button
             title="선택 목록 수정"
             onPress={() => {
-              try {
+              if (index !== "") {
                 store2(spDayList);
                 store4(spDayList);
                 navigation.navigate("Edit");
-              } catch {
+              } else {
                 Alert.alert(
                   "안내말씀",
-                  "수정할 쇼핑 목록이 없습니다!\n첫 쇼핑 목록을 만들어 보세요!"
+                  "빈 쇼핑 목록이거나 선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
                 );
-                navigation.navigate("New");
+                navigation.navigate("Old");
               }
             }}
           />
@@ -272,12 +272,12 @@ function Old({ navigation }) {
             title="새 목록 작성"
             color="green"
             onPress={() => {
-              try {
-                store4(spDayList);
-              } catch {
+              if (oldShoppingList.length === 0) {
                 Alert.alert("안내말씀", "첫 쇼핑 목록 만들기를 축하합니다!");
+                navigation.navigate("New");
+              } else {
+                navigation.navigate("New");
               }
-              navigation.navigate("New");
             }}
           />
         </Row>
