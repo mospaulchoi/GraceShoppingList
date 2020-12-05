@@ -6,6 +6,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Container = styled.SafeAreaView`
   flex: 1;
 `;
+const Row1 = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
 const Title1 = styled.Text`
   padding-top: 40px;
   font-size: 36px;
@@ -13,16 +17,24 @@ const Title1 = styled.Text`
   text-align: center;
   color: darkblue;
 `;
+const Title2View = styled.View`
+  width: 45%;
+  padding-right: 10px;
+`;
 const Title2 = styled.Text`
   font-size: 30px;
   font-weight: bold;
-  text-align: center;
+  text-align: right;
   color: darkgreen;
+`;
+const Title3View = styled.View`
+  width: 55%;
+  padding-left: 10px;
 `;
 const Title3 = styled.Text`
   font-size: 45px;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   color: purple;
 `;
 const Image = styled.ImageBackground`
@@ -69,8 +81,14 @@ function Home({ navigation }) {
     <Container>
       <Image source={require("../assets/cosmos.jpg")}>
         <Title1>Shopping List App</Title1>
-        <Title2>for</Title2>
-        <Title3>You</Title3>
+        <Row1>
+          <Title2View>
+            <Title2>for</Title2>
+          </Title2View>
+          <Title3View>
+            <Title3>You</Title3>
+          </Title3View>
+        </Row1>
         <Row>
           <ButtonView1>
             <Button
