@@ -27,7 +27,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.mosPaulChoi.GraceShoppingList",
-      "versionCode": 10000
+      "versionCode": 10000,
+      "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"
