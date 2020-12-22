@@ -135,9 +135,6 @@ function Old({ navigation }) {
     AsyncStorage.setItem("spDayList", JSON.stringify(value));
   };
 
-  console.log(index);
-  console.log(oldShoppingList);
-
   return (
     <Container>
       <UpperBox>
