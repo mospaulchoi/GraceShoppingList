@@ -135,6 +135,9 @@ function Old({ navigation }) {
     AsyncStorage.setItem("spDayList", JSON.stringify(value));
   };
 
+  console.log(index);
+  console.log(oldShoppingList);
+
   return (
     <Container>
       <UpperBox>
@@ -191,7 +194,7 @@ function Old({ navigation }) {
                       },
                     },
                   ],
-                  { cancelable: false }
+                  { cancelable: true }
                 );
                 navigation.navigate("Old");
               } else {
@@ -273,7 +276,7 @@ function Old({ navigation }) {
             color="green"
             onPress={() => {
               if (oldShoppingList.length === 0) {
-                Alert.alert("안내말씀", "첫 쇼핑 목록 만들기를 축하합니다!");
+                Alert.alert("안내말씀", "첫 쇼핑 목록 만들기를 축하드립니다!");
                 navigation.navigate("New");
               } else {
                 navigation.navigate("New");

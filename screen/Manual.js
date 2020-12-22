@@ -75,7 +75,7 @@ function Manual({ navigation }) {
                       },
                       { text: "삭제", onPress: () => clearStorage() },
                     ],
-                    { cancelable: false }
+                    { cancelable: true }
                   );
                   navigation.navigate("Manual");
                 }}

@@ -60,6 +60,9 @@ const Interval = styled.View`
 
 function Home({ navigation }) {
   const [oldShoppingList, setOldShoppingList] = React.useState([]);
+  const [todayShoppingList, setTodayShoppingList] = React.useState([]);
+  const [favList, setFavList] = React.useState([]);
+  const [shoppingList, setShoppingList] = React.useState([]);
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -67,6 +70,54 @@ function Home({ navigation }) {
         .then((data) => {
           if (data !== null) {
             setOldShoppingList(JSON.parse(data));
+          }
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      AsyncStorage.getItem("todayShoppingList")
+        .then((data) => {
+          if (data !== null) {
+            setTodayShoppingList(JSON.parse(data));
+          }
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      AsyncStorage.getItem("favList")
+        .then((data) => {
+          if (data !== null) {
+            setFavList(JSON.parse(data));
+          }
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      AsyncStorage.getItem("shoppingList")
+        .then((data) => {
+          if (data !== null) {
+            setShoppingList(JSON.parse(data));
           }
         })
         .catch((error) => {
@@ -94,12 +145,26 @@ function Home({ navigation }) {
             <Button
               title="오늘의 쇼핑 목록"
               onPress={() => {
-                if (oldShoppingList.length === 0) {
+                if (todayShoppingList.length === 0) {
                   Alert.alert(
                     "안내말씀",
-                    "오늘의 쇼핑 목록이 아직 없습니다.\n사용 설명서를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!"
+                    "오늘의 쇼핑 목록이 아직 없습니다.\n'사용 설명서'를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!",
+                    [
+                      {
+                        text: "사용 설명서 보기",
+                        onPress: () => {
+                          navigation.navigate("Manual");
+                        },
+                      },
+                      {
+                        text: "새 쇼핑 목록 만들기",
+                        onPress: () => {
+                          navigation.navigate("New");
+                        },
+                      },
+                    ],
+                    { cancelable: true }
                   );
-                  navigation.navigate("Home");
                 } else {
                   navigation.navigate("Today");
                 }
@@ -116,12 +181,26 @@ function Home({ navigation }) {
             <Button
               title="즐겨찾기 쇼핑 목록"
               onPress={() => {
-                if (oldShoppingList.length === 0) {
+                if (favList.length === 0) {
                   Alert.alert(
                     "안내말씀",
-                    "즐겨찾기 쇼핑 목록이 아직 없습니다.\n사용 설명서를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!"
+                    "즐겨찾기 쇼핑 목록이 아직 없습니다.\n'사용 설명서'를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!",
+                    [
+                      {
+                        text: "사용 설명서 보기",
+                        onPress: () => {
+                          navigation.navigate("Manual");
+                        },
+                      },
+                      {
+                        text: "새 쇼핑 목록 만들기",
+                        onPress: () => {
+                          navigation.navigate("New");
+                        },
+                      },
+                    ],
+                    { cancelable: true }
                   );
-                  navigation.navigate("Home");
                 } else {
                   navigation.navigate("Favorite");
                 }
@@ -134,9 +213,23 @@ function Home({ navigation }) {
                 if (oldShoppingList.length === 0) {
                   Alert.alert(
                     "안내말씀",
-                    "이전 쇼핑 목록이 아직 없습니다.\n사용 설명서를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!"
+                    "이전 쇼핑 목록이 아직 없습니다.\n'사용 설명서'를 먼저 읽어 주시고,\n'새 쇼핑 목록 만들기'로부터 시작해 주세요!",
+                    [
+                      {
+                        text: "사용 설명서 보기",
+                        onPress: () => {
+                          navigation.navigate("Manual");
+                        },
+                      },
+                      {
+                        text: "새 쇼핑 목록 만들기",
+                        onPress: () => {
+                          navigation.navigate("New");
+                        },
+                      },
+                    ],
+                    { cancelable: true }
                   );
-                  navigation.navigate("Home");
                 } else {
                   navigation.navigate("Old");
                 }
@@ -149,9 +242,23 @@ function Home({ navigation }) {
                 if (oldShoppingList.length === 0) {
                   Alert.alert(
                     "안내말씀",
-                    "와우!\n첫 쇼핑 목록 만들기를\n진심으로 축하드립니다!!!!!!!"
+                    "와우!\n첫 쇼핑 목록 만들기를 축하드립니다!\n\n혹시 '사용 설명서'를 아직 안 보셨다면\n꼭 먼저 보시기를 바랍니다!",
+                    [
+                      {
+                        text: "사용 설명서 보기",
+                        onPress: () => {
+                          navigation.navigate("Manual");
+                        },
+                      },
+                      {
+                        text: "새 쇼핑 목록 만들기",
+                        onPress: () => {
+                          navigation.navigate("New");
+                        },
+                      },
+                    ],
+                    { cancelable: true }
                   );
-                  navigation.navigate("New");
                 } else {
                   navigation.navigate("New");
                 }

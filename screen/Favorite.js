@@ -186,7 +186,7 @@ function Favorite({ navigation }) {
                     },
                   },
                 ],
-                { cancelable: false }
+                { cancelable: true }
               );
               navigation.navigate("Favorite");
             }}
