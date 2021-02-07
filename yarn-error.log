@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\mospaulchoi\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-gesture-handler@~1.7.0 ~1.7.0
+  C:\Program Files\nodejs\node.exe C:\Users\mospaulchoi\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add lodash-memoize
 
 PATH: 
-  C:\Python27\;C:\Python27\Scripts;C:\Python38\Scripts\;C:\Python38\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\OpenJDK\openjdk-8u262-b10\bin;C:\Users\mospaulchoi\AppData\Local\Android\Sdk\platform-tools\;C:\Users\mospaulchoi\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\mospaulchoi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mospaulchoi\AppData\Roaming\npm;C:\Users\mospaulchoi\AppData\Local\Android\Sdk\platform-tools;
+  C:\Python27\;C:\Python27\Scripts;C:\Python38\Scripts\;C:\Python38\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\OpenJDK\openjdk-8u262-b10\bin;C:\Users\mospaulchoi\AppData\Local\Android\Sdk\platform-tools\;C:\Program Files\Git\cmd;C:\Users\mospaulchoi\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\mospaulchoi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mospaulchoi\AppData\Roaming\npm;C:\Users\mospaulchoi\AppData\Local\Android\Sdk\platform-tools;
 
 Yarn version: 
   1.22.5
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/~1.7.0: Not found
+  Error: https://registry.yarnpkg.com/lodash-memoize: Not found
       at Request.params.callback [as _callback] (C:\Users\mospaulchoi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
       at Request.self.callback (C:\Users\mospaulchoi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
       at Request.emit (events.js:314:20)
@@ -41,18 +41,20 @@ npm manifest:
       "@react-native-community/masked-view": "^0.1.10",
       "@react-navigation/native": "^5.8.10",
       "@react-navigation/stack": "^5.12.7",
-      "expo": "~39.0.2",
+      "expo": "^39.0.5",
+      "expo-localization": "~9.0.0",
       "expo-status-bar": "~1.0.2",
+      "i18n-js": "^3.8.0",
       "immer": "^8.0.0",
       "lodash": "^4.17.20",
       "moment": "^2.29.1",
       "react": "16.13.1",
       "react-dom": "16.13.1",
       "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
-      "react-native-gesture-handler": "^1.8.0",
+      "react-native-gesture-handler": "~1.7.0",
       "react-native-reanimated": "^1.13.2",
-      "react-native-safe-area-context": "^3.1.9",
-      "react-native-screens": "^2.15.0",
+      "react-native-safe-area-context": "3.1.4",
+      "react-native-screens": "~2.10.1",
       "react-native-web": "~0.13.12",
       "styled-components": "^5.2.1"
     },
@@ -2654,6 +2656,13 @@ Lockfile:
       qs "^6.5.0"
       url-parse "^1.4.4"
   
+  expo-localization@~9.0.0:
+    version "9.0.0"
+    resolved "https://registry.yarnpkg.com/expo-localization/-/expo-localization-9.0.0.tgz#1a61582f9ffb3cd28879a917dec347c444bff54e"
+    integrity sha512-jG84LA9yyQpLcSOKvR/WoIm0IHZ4tZQma//AJ9/DgBZC5zSB/aDbcjmCStQvqCePz8EMy1CKxRd+UlKYPLEiVw==
+    dependencies:
+      rtl-detect "^1.0.2"
+  
   expo-location@~9.0.0:
     version "9.0.1"
     resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-9.0.1.tgz#adf93b8adf5e9dcf9570cba1d66c8e3831329156"
@@ -2684,10 +2693,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.0.2.tgz#2441a77c56be31597898337b0d086981f2adefd8"
     integrity sha512-5313u744GcLzCadxIPXyTkYw77++UXv1dXCuhYDxDbtsEf93iMra7WSvzyE8a7mRQLIIPRuGnBOdrL/V1C7EOQ==
   
-  expo@~39.0.2:
-    version "39.0.4"
-    resolved "https://registry.yarnpkg.com/expo/-/expo-39.0.4.tgz#320b7453ac055fc37c64942d5ba442f4e2781993"
-    integrity sha512-lyd7VSg0DG+I2CwWtOHwhmMwgANoqggqU1ooWRdO4KdWPYA8hWMMsLC2vBBBemKv3PPwxhl9hhzFxtjJ/MaR7g==
+  expo@^39.0.5:
+    version "39.0.5"
+    resolved "https://registry.yarnpkg.com/expo/-/expo-39.0.5.tgz#d2a37a65859c8c5c1821a49012548bdf541a4c7f"
+    integrity sha512-uLywo0Gvx0SUz/Bso/2IMDeMr9Lvr4/4YB8yAYS3BW3872duFHKHVccKEqLzBN+q/5DuW5fmSNkOeQCThMFo/w==
     dependencies:
       "@babel/runtime" "^7.1.2"
       "@expo/vector-icons" "^10.0.2"
@@ -3111,7 +3120,12 @@ Lockfile:
     dependencies:
       source-map "^0.7.3"
   
-  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0:
+  hoist-non-react-statics@^2.3.1:
+    version "2.5.5"
+    resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+    integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
+  
+  hoist-non-react-statics@^3.0.0:
     version "3.3.2"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
     integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -3133,6 +3147,11 @@ Lockfile:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
     integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
+  
+  i18n-js@^3.8.0:
+    version "3.8.0"
+    resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.8.0.tgz#b8fd6b12e1d88cb71f9806c29bca7c31c012e504"
+    integrity sha512-hDsGgPuvw/2P+lXSbOafAwspK8Ste8YrwuuUg17W3wEcO1JkQxBlPgsN1t2+852nTnz4YSYTjZc/1nAA2PC/nw==
   
   iconv-lite@^0.4.17:
     version "0.4.24"
@@ -4754,13 +4773,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
     integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
   
-  react-native-gesture-handler@^1.8.0:
-    version "1.8.0"
-    resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.8.0.tgz#18f61f51da50320f938957b0ee79bc58f47449dc"
-    integrity sha512-E2FZa0qZ5Bi0Z8Jg4n9DaFomHvedSjwbO2DPmUUHYRy1lH2yxXUpSrqJd6yymu+Efzmjg2+JZzsjFYA2Iq8VEQ==
+  react-native-gesture-handler@~1.7.0:
+    version "1.7.0"
+    resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.7.0.tgz#0ef74a5ba836832e497dc49eb1ce58baa6c617e5"
+    integrity sha512-1CrjJf8Z6Iz2XWzfZknYtsm2sud5Lu/pLhhokkgBIKttxqGDtetDEVFDJOTJWJyKCrUPk0X5tnWi/diSF4q++w==
     dependencies:
       "@egjs/hammerjs" "^2.0.17"
-      hoist-non-react-statics "^3.3.0"
+      hoist-non-react-statics "^2.3.1"
       invariant "^2.2.4"
       prop-types "^15.7.2"
   
@@ -4781,15 +4800,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.4.tgz#9b7f883a5ae8da6218d17467a350434005893602"
     integrity sha512-bXx3hqz4LovFoMnJIRGIWL2oJ/PHadXviBKvgZV9yNErtURQLJSn0yfQytVtiqslhaBMZOJwH4R6HiClyofvBg==
   
-  react-native-safe-area-context@^3.1.9:
-    version "3.1.9"
-    resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"
-    integrity sha512-wmcGbdyE/vBSL5IjDPReoJUEqxkZsywZw5gPwsVUV1NBpw5eTIdnL6Y0uNKHE25Z661moxPHQz6kwAkYQyorxA==
-  
-  react-native-screens@^2.15.0:
-    version "2.15.0"
-    resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.0.tgz#9b97c1881c4fcdf304bf363f0013225901625f44"
-    integrity sha512-qTSQPy0WKHtlb8xt5gY0Gt6sdvfQUQAnFSqgsggW9UEvySbkHzpqOrOYNA79Ca8oXO0dCFwp6X8buIiDefa7+Q==
+  react-native-screens@~2.10.1:
+    version "2.10.1"
+    resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.10.1.tgz#06d22fae87ef0ce51c616c34a199726db1403b95"
+    integrity sha512-Z2kKSk4AwWRQNCBmTjViuBQK0/Lx0jc25TZptn/2gKYUCOuVRvCekoA26u0Tsb3BIQ8tWDsZW14OwDlFUXW1aw==
   
   react-native-web@~0.13.12:
     version "0.13.18"
@@ -5016,6 +5030,11 @@ Lockfile:
     version "4.8.5"
     resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
     integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
+  
+  rtl-detect@^1.0.2:
+    version "1.0.2"
+    resolved "https://registry.yarnpkg.com/rtl-detect/-/rtl-detect-1.0.2.tgz#8eca316f5c6563d54df4e406171dd7819adda67f"
+    integrity sha512-5X1422hvphzg2a/bo4tIDbjFjbJUOaPZwqE6dnyyxqwFqfR+tBcvfqapJr0o0VygATVCGKiODEewhZtKF+90AA==
   
   run-async@^2.2.0:
     version "2.4.1"

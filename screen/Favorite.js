@@ -5,12 +5,11 @@ import Container from "../components/Container";
 import Contents from "../components/Contents";
 import Row from "../components/Row";
 import _ from "lodash";
-import moment from "moment";
-import "moment/locale/ko";
 import produce from "immer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Localized, init } from "../i18n/Localized";
 
-moment.locale("ko");
+init();
 
 const UpperBox = styled.View`
   flex: 2;
@@ -129,7 +128,7 @@ function Favorite({ navigation }) {
   return (
     <Container>
       <UpperBox>
-        <Title>즐겨찾기 쇼핑 목록을 선택하세요!</Title>
+        <Title>{Localized("036")}</Title>
         <Contents>
           {favList.map((e) => {
             return (
@@ -159,29 +158,26 @@ function Favorite({ navigation }) {
         </Contents>
         <Row>
           <Button
-            title="선택한 즐겨찾기 쇼핑 목록 삭제하기"
+            title={Localized("037")}
             color="purple"
             onPress={() => {
               Alert.alert(
-                "안내말씀",
-                "선택하신 즐겨찾기 쇼핑 목록이 삭제됩니다!\n\n정말 삭제하시겠습니까?",
+                Localized("000"),
+                Localized("038"),
                 [
                   {
-                    text: "취소",
+                    text: Localized("029"),
                     onPress: () => {},
                     style: "cancel",
                   },
                   {
-                    text: "삭제",
+                    text: Localized("030"),
                     onPress: () => {
                       if (index !== "") {
                         store1(_.reject(favList, favList[index]));
                         setSelFavList([]);
                       } else {
-                        Alert.alert(
-                          "안내말씀",
-                          "선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
-                        );
+                        Alert.alert(Localized("000"), Localized("039"));
                       }
                     },
                   },
@@ -194,7 +190,7 @@ function Favorite({ navigation }) {
         </Row>
       </UpperBox>
       <LowerBox>
-        <Title>선택한 즐겨찾기 쇼핑 목록</Title>
+        <Title>{Localized("040")}</Title>
         <Contents>
           <ItemList>
             {selFavList !== [] ? (
@@ -212,7 +208,7 @@ function Favorite({ navigation }) {
         </Contents>
         <Row>
           <Button
-            title="홈"
+            title={Localized("0211")}
             color="purple"
             onPress={() => {
               store4(selFavList);
@@ -220,14 +216,14 @@ function Favorite({ navigation }) {
             }}
           />
           <Button
-            title="이전 쇼핑 목록"
+            title={Localized("0061")}
             onPress={() => {
               store4(selFavList);
               navigation.navigate("Old");
             }}
           />
           <Button
-            title="오늘의 쇼핑 목록으로 전송"
+            title={Localized("041")}
             color="green"
             onPress={() => {
               store2();

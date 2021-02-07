@@ -9,7 +9,9 @@ import Name from "./screen/Name";
 import Manual from "./screen/Manual";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { Localized, init } from "./i18n/Localized";
 
+init();
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -24,13 +26,13 @@ export default function App() {
         <Stack.Screen
           name="Old"
           component={Old}
-          options={{ title: "이전 쇼핑 목록", headerTitleAlign: "center" }}
+          options={{ title: Localized("006"), headerTitleAlign: "center" }}
         />
         <Stack.Screen
           name="Edit"
           component={Edit}
           options={{
-            title: "이전 쇼핑 목록 수정하기",
+            title: Localized("013"),
             headerTitleAlign: "center",
           }}
         />
@@ -38,7 +40,7 @@ export default function App() {
           name="New"
           component={New}
           options={{
-            title: "새 쇼핑 목록 만들기",
+            title: Localized("007"),
             headerTitleAlign: "center",
           }}
         />
@@ -46,20 +48,20 @@ export default function App() {
           name="Today"
           component={Today}
           options={{
-            title: "오늘의 쇼핑 목록",
+            title: Localized("004"),
             headerTitleAlign: "center",
           }}
         />
         <Stack.Screen
           name="Favorite"
           component={Favorite}
-          options={{ title: "즐겨찾기 쇼핑 목록", headerTitleAlign: "center" }}
+          options={{ title: Localized("005"), headerTitleAlign: "center" }}
         />
         <Stack.Screen
           name="Name"
           component={Name}
           options={{
-            title: "쇼핑 목록 이름 정하기",
+            title: Localized("014"),
             headerTitleAlign: "center",
           }}
         />
@@ -67,7 +69,7 @@ export default function App() {
           name="Manual"
           component={Manual}
           options={{
-            title: "사용 설명서",
+            title: Localized("008"),
             headerTitleAlign: "center",
           }}
         />

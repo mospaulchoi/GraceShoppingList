@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "GraceShoppingList",
+    "name": "ShoppingList",
     "slug": "GraceShoppingList",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mosPaulChoi.GraceShoppingList",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.1"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,8 +27,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.mosPaulChoi.GraceShoppingList",
-      "versionCode": 10000,
-      "permissions": []
+      "versionCode": 10001,
+      "permissions": [],
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-6766978074816044~3165622143"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

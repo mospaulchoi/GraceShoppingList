@@ -5,12 +5,11 @@ import Container from "../components/Container";
 import Contents from "../components/Contents";
 import Row from "../components/Row";
 import _ from "lodash";
-import moment from "moment";
-import "moment/locale/ko";
 import produce from "immer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Localized, init } from "../i18n/Localized";
 
-moment.locale("ko");
+init();
 
 const UpperBox = styled.View`
   flex: 2;
@@ -138,7 +137,7 @@ function Old({ navigation }) {
   return (
     <Container>
       <UpperBox>
-        <Title>날짜를 선택하세요!</Title>
+        <Title>{Localized("026")}</Title>
         <Contents>
           {oldShoppingList.map((e) => {
             return (
@@ -168,21 +167,21 @@ function Old({ navigation }) {
         </Contents>
         <Row>
           <Button
-            title="선택 목록 삭제"
+            title={Localized("027")}
             color="purple"
             onPress={() => {
               if (index !== "") {
                 Alert.alert(
-                  "안내말씀",
-                  "선택하신 날짜의 쇼핑 목록이 삭제됩니다!\n\n정말 삭제하시겠습니까?",
+                  Localized("000"),
+                  Localized("028"),
                   [
                     {
-                      text: "취소",
+                      text: Localized("029"),
                       onPress: () => {},
                       style: "cancel",
                     },
                     {
-                      text: "삭제",
+                      text: Localized("030"),
                       onPress: () => {
                         store1(
                           _.reject(oldShoppingList, oldShoppingList[index])
@@ -195,32 +194,26 @@ function Old({ navigation }) {
                 );
                 navigation.navigate("Old");
               } else {
-                Alert.alert(
-                  "안내말씀",
-                  "빈 쇼핑 목록이거나 선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
-                );
+                Alert.alert(Localized("000"), Localized("031"));
               }
             }}
           />
           <Button
-            title="선택 목록 즐겨찾기에 추가"
+            title={Localized("032")}
             onPress={() => {
               try {
                 store3(oldShoppingList[index].list);
                 store4(oldShoppingList[index].list);
                 navigation.navigate("Name");
               } catch (error) {
-                Alert.alert(
-                  "안내말씀",
-                  "빈 쇼핑 목록이거나 선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
-                );
+                Alert.alert(Localized("000"), Localized("031"));
               }
             }}
           />
         </Row>
       </UpperBox>
       <LowerBox>
-        <Title>선택한 날짜의 쇼핑 목록</Title>
+        <Title>{Localized("033")}</Title>
         <Contents>
           <ItemList>
             {oldShoppingList !== [] ? (
@@ -238,7 +231,7 @@ function Old({ navigation }) {
         </Contents>
         <Row>
           <Button
-            title="홈"
+            title={Localized("0211")}
             color="purple"
             onPress={() => {
               store4(spDayList);
@@ -246,30 +239,28 @@ function Old({ navigation }) {
             }}
           />
           <Button
-            title="즐겨찾기"
+            title={Localized("0051")}
+            color="orange"
             onPress={() => {
               store4(spDayList);
               navigation.navigate("Favorite");
             }}
           />
           <Button
-            title="선택 목록 수정"
+            title={Localized("034")}
             onPress={() => {
               if (index !== "") {
                 store2(spDayList);
                 store4(spDayList);
                 navigation.navigate("Edit");
               } else {
-                Alert.alert(
-                  "안내말씀",
-                  "빈 쇼핑 목록이거나 선택이 잘 안되었으니 다시 한 번 터치해서 선택해 주세요!"
-                );
+                Alert.alert(Localized("000"), Localized("031"));
                 navigation.navigate("Old");
               }
             }}
           />
           <Button
-            title="새 목록 작성"
+            title={Localized("035")}
             color="green"
             onPress={() => {
               if (oldShoppingList.length === 0) {

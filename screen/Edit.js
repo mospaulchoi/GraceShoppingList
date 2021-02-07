@@ -4,20 +4,19 @@ import styled from "styled-components/native";
 import Container from "../components/Container";
 import Contents from "../components/Contents";
 import Row from "../components/Row";
-import products_kor from "../products/products_kor.json";
 import _ from "lodash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import moment from "moment";
-import "moment/locale/ko";
+import moment from "moment-with-locales-es6";
+import { Localized, init } from "../i18n/Localized";
 
-moment.locale("ko");
+init();
+moment.locale(Localized("060"));
 
 const Button = styled.Button``;
 const Title = styled.Text`
   font-size: 16px;
   font-weight: bold;
   color: blue;
-  text-align: center;
   padding: 4px;
 `;
 const UnitBox = styled.View``;
@@ -54,12 +53,10 @@ const ShoppingItem = styled.Text`
   margin-right: 4px;
   margin-bottom: 4px;
 `;
-const DeleteBox = styled.TouchableOpacity`
-  width: 20%;
-`;
+const DeleteBox = styled.TouchableOpacity``;
 const Input = styled.TextInput`
   border: 1px solid dodgerblue;
-  width: 80%;
+  width: 65%;
   padding: 4px;
   height: 35px;
   font-size: 16px;
@@ -137,9 +134,9 @@ function Edit({ navigation }) {
 
   return (
     <Container>
-      <Title>상품 메뉴: 터치하면 목록에 추가됨!</Title>
+      <Title>{Localized("015")}</Title>
       <Contents>
-        {products_kor.map((e) => {
+        {Localized("059").map((e) => {
           return (
             <UnitBox key={e.section.toString()}>
               <SectionView>
@@ -163,7 +160,7 @@ function Edit({ navigation }) {
                         ) {
                           store1([...editShoppingList, shoppingItem]);
                         } else {
-                          Alert.alert("안내말씀", "이미 추가되었습니다!");
+                          Alert.alert(Localized("000"), Localized("016"));
                         }
                       }}
                     >
@@ -177,10 +174,10 @@ function Edit({ navigation }) {
         })}
       </Contents>
       <Row>
-        <Title>새 쇼핑 목록: 터치하면 삭제됨!</Title>
+        <Title>{Localized("017")}</Title>
         <DeleteBox>
           <Button
-            title="전체삭제"
+            title={Localized("018")}
             color="purple"
             onPress={() => {
               setEditShoppingList([]);
@@ -208,12 +205,12 @@ function Edit({ navigation }) {
       </Contents>
       <Row>
         <Input
-          placeholder="메뉴에 없는 상품명을 이곳에 쓰세요!"
+          placeholder={Localized("019")}
           value={text}
           onChangeText={(text) => setText(text)}
         />
         <Button
-          title="추가"
+          title={Localized("020")}
           onPress={() => {
             if (text !== "") {
               const editAddItem = {
@@ -230,7 +227,7 @@ function Edit({ navigation }) {
                 setText("");
                 Keyboard.dismiss();
               } else {
-                Alert.alert("안내말씀", "이미 추가되었습니다!");
+                Alert.alert(Localized("000"), Localized("016"));
                 setText("");
               }
             }
@@ -239,7 +236,7 @@ function Edit({ navigation }) {
       </Row>
       <Row>
         <Button
-          title="홈"
+          title={Localized("0211")}
           color="purple"
           onPress={() => {
             store5();
@@ -247,18 +244,18 @@ function Edit({ navigation }) {
           }}
         />
         <Button
-          title="이전 쇼핑 목록"
+          title={Localized("0061")}
           onPress={() => {
             store5();
             navigation.navigate("Old");
           }}
         />
         <Button
-          title="수정 쇼핑 목록 저장"
+          title={Localized("042")}
           color="green"
           onPress={() => {
             if (editShoppingList.length === 0) {
-              Alert.alert("안내말씀", "빈 쇼핑 목록은 저장하지 않습니다!");
+              Alert.alert(Localized("000"), Localized("023"));
               navigation.navigate("Edit");
             } else {
               store2(

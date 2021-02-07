@@ -4,6 +4,9 @@ import styled from "styled-components/native";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Localized, init } from "../i18n/Localized";
+
+init();
 
 const Contents = styled.View`
   flex: 1;
@@ -16,9 +19,10 @@ const Text = styled.Text`
   font-size: 16px;
   font-weight: bold;
   color: blue;
-  margin-bottom: 20px;
   text-align: center;
-  line-height: 25px;
+  margin-bottom: 10px;
+  line-height: 20px;
+  padding-left: 4px;
 `;
 const Input = styled.TextInput`
   width: 250px;
@@ -88,15 +92,15 @@ function Name({ navigation }) {
   return (
     <Container>
       <Contents>
-        <Text>{`기억하기 편하신 이름으로 정해 주세요!\n예) 일상 쇼핑 목록, ㅇㅇ 생일, 추석 명절 등\n'확인' 버튼을 누르셔야 등록이 됩니다!`}</Text>
+        <Text>{Localized("043")}</Text>
         <Row>
           <Input
-            placeholder="여기에 써 주세요!"
+            placeholder={Localized("044")}
             value={favName}
             onChangeText={(favName) => setFavName(favName)}
           />
           <Button
-            title="확인"
+            title={Localized("045")}
             onPress={() => {
               if (
                 favName !== "" &&
@@ -122,10 +126,7 @@ function Name({ navigation }) {
                 Keyboard.dismiss();
                 navigation.navigate("Favorite");
               } else {
-                Alert.alert(
-                  "안내말씀",
-                  "빈 이름이거나 이미 동일한 이름이 존재합니다!"
-                );
+                Alert.alert(Localized("000"), Localized("046"));
                 navigation.navigate("Name");
               }
             }}
@@ -134,19 +135,19 @@ function Name({ navigation }) {
       </Contents>
       <Row>
         <Button
-          title="홈"
+          title={Localized("0211")}
           color="purple"
           onPress={() => navigation.navigate("Home")}
         />
         <Button
-          title="이전 쇼핑 목록"
+          title={Localized("0061")}
           onPress={() => {
             navigation.navigate("Old");
           }}
         />
         <Button
-          title="즐겨찾기 목록"
-          color="green"
+          title={Localized("0051")}
+          color="orange"
           onPress={() => {
             navigation.navigate("Favorite");
           }}

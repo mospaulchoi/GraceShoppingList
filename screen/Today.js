@@ -3,12 +3,14 @@ import styled from "styled-components/native";
 import Container from "../components/Container";
 import Contents from "../components/Contents";
 import Row from "../components/Row";
-import moment from "moment";
-import "moment/locale/ko";
+import moment from "moment-with-locales-es6";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import produce from "immer";
+import { Localized, init } from "../i18n/Localized";
+import { AdMobBanner } from "expo-ads-admob";
 
-moment.locale("ko");
+init();
+moment.locale(Localized("060"));
 
 const Today1 = styled.Text`
   font-size: 16px;
@@ -37,7 +39,20 @@ const Item2 = styled(Item1)`
   text-decoration: line-through;
   background: yellow;
 `;
-const Button = styled.Button``;
+const Row2 = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 4px;
+`;
+const Button = styled.Button`
+  margin-bottom: 4px;
+`;
+const BannerBox = styled.View`
+  align-self: center;
+  margin-top: 6px;
+  margin-bottom: 10px;
+`;
 
 function Today({ navigation }) {
   const [todayShoppingList, setTodayShoppingList] = React.useState([]);
@@ -76,8 +91,8 @@ function Today({ navigation }) {
 
   return (
     <Container>
-      <Today1>{moment().format("YYYY-MM-DD. dddd.")}</Today1>
-      <Today2>이미 구입한 항목은 터치하세요!</Today2>
+      <Today1>{moment().format(Localized("058"))}</Today1>
+      <Today2>{Localized("024")}</Today2>
       <Contents>
         <Row>
           {todayShoppingList.map((e) => (
@@ -101,22 +116,31 @@ function Today({ navigation }) {
           ))}
         </Row>
       </Contents>
-      <Row>
+      <BannerBox>
+        <AdMobBanner
+          bannerSize="banner"
+          adUnitID="ca-app-pub-6766978074816044/6591815540"
+          servePersonalizedAds="true"
+          onDidFailToReceiveAdWithError={(e) => console.log(e.message)}
+        />
+      </BannerBox>      
+      <Row2>
         <Button
-          title="홈"
+          title={Localized("0211")}
           color="purple"
           onPress={() => navigation.navigate("Home")}
         />
         <Button
-          title="이전 쇼핑 목록"
+          title={Localized("0061")}
           onPress={() => navigation.navigate("Old")}
         />
         <Button
-          title="즐겨찾기 목록"
+          title={Localized("0051")}
+          color="orange"
           onPress={() => navigation.navigate("Favorite")}
         />
         <Button
-          title="수정"
+          title={Localized("025")}
           color="green"
           onPress={() => {
             store1(
@@ -129,7 +153,7 @@ function Today({ navigation }) {
             navigation.navigate("New");
           }}
         />
-      </Row>
+      </Row2>      
     </Container>
   );
 }
